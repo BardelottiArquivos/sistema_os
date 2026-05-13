@@ -52,4 +52,7 @@ EXPOSE 8000
 
 # ⚠️ REMOVA COMPLETAMENTE a linha do createsuperuser daqui!
 
-CMD gunicorn core.wsgi:application --bind 0.0.0.0:$PORT
+# CMD gunicorn core.wsgi:application --bind 0.0.0.0:$PORT
+
+# Garante que as migrações rodem e depois inicia o gunicorn
+CMD python manage.py migrate --noinput && gunicorn core.wsgi:application --bind 0.0.0.0:10000
