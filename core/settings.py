@@ -82,11 +82,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # ============================================
 # BANCO DE DADOS (PostgreSQL Dinâmico)
 # ============================================
-# Se houver DATABASE_URL no ambiente (Render), usa ela. 
-# Caso contrário, monta a configuração manual do seu .env
+# # No topo do arquivo, certifique-se de ter:
+import dj_database_url
+
+# Substitua o bloco DATABASES por este:
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL', default=f"postgres://{config('DB_USER')}:{config('DB_PASSWORD')}@{config('DB_HOST')}:{config('DB_PORT')}/{config('DB_NAME')}"),
+        # Ele tenta ler DATABASE_URL. Se não existir (como no seu PC), usa o SQLite ou o que você definir.
+        default=config('DATABASE_URL', default='postgres://postgres:2530@localhost:5432/sistema'),
         conn_max_age=600
     )
 }
