@@ -9,7 +9,7 @@ from apps.usuarios.models import Usuario # Verifique se o caminho do seu modelo 
 def create_superuser():
     username = 'admin'
     email = 'admin@email.com'
-    password = 'SuaSenhaForteAqui' # Mude isso depois!
+    password = '227567c#' # Mude isso depois!
 
     if not Usuario.objects.filter(username=username).exists():
         Usuario.objects.create_superuser(username, email, password)
